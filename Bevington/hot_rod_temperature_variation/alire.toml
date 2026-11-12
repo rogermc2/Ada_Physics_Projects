@@ -1,0 +1,11 @@
+name = "hot_rod_temperature_variation"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Roger"]
+maintainers = ["rogermc@iinet.net.au"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = []
+
+executables = ["hot_rod_temperature"]

@@ -19,16 +19,6 @@ package body Monte_Carlo_Lib is
 
    end Gauss_Smear;
 
-   function Gaussian_Smear (X, X0 : Float; Sigma : Float := 1.0)
-      return Float is
-      --  X : The point where the curve is evaluated
-      --  x0 : The center of the peak (discrete data point)
-      --  sigma : Broadening width parameter
-   begin
-      return 1.0 /
-         (Sigma * Sqrt (2.0 * Pi)) * Exp (-0.5 * ((X - X0) / Sigma) ** 2);
-   end Gaussian_Smear;
-
    procedure Get_Random_Deviate_Seed (SA, SB, SC : out Integer) is
    begin
       SA := Seed_1;
@@ -45,7 +35,6 @@ package body Monte_Carlo_Lib is
       R     : Float;
       Theta : Float;
       Z0    : Float;
-
       --  Note: Box-Muller generates two independent numbers  (Z0 and Z1).
       --  For a simple functional interface generate both and return one.
    begin
@@ -91,6 +80,7 @@ package body Monte_Carlo_Lib is
 
    end Random_Deviate;
 
+   --  Equivalent to Bevington's Gaussian deviate generator
    function Random_Gaussian_Deviate (Gen : in out Generator) return Float is
       U1    : Uniformly_Distributed := 0.0;
       U2    : Uniformly_Distributed;

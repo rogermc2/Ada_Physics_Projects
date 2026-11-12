@@ -12,25 +12,16 @@ procedure Hot_Rod_Temperature is
    X       : Float := -0.5;
    Num     : constant Integer := 5;
 begin
-   Put_Line
-      ("Simulating 5 physical science measurement noise fluctuations" &
-         " (Mean=0.0, Std_Dev=1.5):");
-   for I in 1 .. 5 loop
-      declare
-         Noise : constant Float :=
-            Random_Gaussian (Mean => 0.0, Std_Dev => 1.5);
-         Reds  : constant String := Float'Image (Noise);
-      begin
-         Put_Line ("  Measurement Deviate" & Integer'Image (I) &
-                     ":" & Reds);
-      end;
-   end loop;
-
    Set_Random_Deviate_Seed (S1, S2, S3);
+
+   Put_Line ("Hot rod test data, sigma: " & Float'Image (Sig_Mat));
+   Put_Line ("         X           T           T'");
    for count in 1 .. Num loop
       X := X + 1.0;
       T := 10.0 * X;
       T_Prime := Gauss_Smear (T, Sig_Mat);
+         Put_Line (Integer'Image (count) & " " & Float'Image (X) &
+                  Float'Image (T) & Float'Image (T_Prime));
    end loop;
 
 end Hot_Rod_Temperature;
